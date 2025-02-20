@@ -15,4 +15,12 @@ public class CollisionDetect : MonoBehaviour
     {
         
     }
+
+    private void OnCollisionEnter(Collision collision) //metoda ktora zostaje wykonana na wejsciu w kolizje
+    {
+        if (collision.gameObject.tag == "Obstacle")
+        {
+            Debug.Log("dosz³o do kolizji");
+        }
+    }
 }

@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float PlayerSpeed = 2f;
 
     public Animator animator;
+
+    public int points = 0;
     void Start()
     {
         

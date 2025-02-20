@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float PlayerSpeed = 2f;
+
+    public Animator animator;
     void Start()
     {
         
@@ -14,12 +16,23 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            transform.Translate(Vector3.left * Time.deltaTime * PlayerSpeed);
+            if (transform.position.x > -4f)
+            {
+                transform.Translate(Vector3.left * Time.deltaTime * PlayerSpeed);
+            }
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            transform.Translate(Vector3.right * Time.deltaTime * PlayerSpeed);
+            if (transform.position.x < 4f)
+            {
+                transform.Translate(Vector3.right * Time.deltaTime * PlayerSpeed);
+            }
+        }
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            animator.Play("Jump");
         }
     }
 }

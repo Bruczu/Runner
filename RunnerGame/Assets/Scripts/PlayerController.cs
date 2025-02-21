@@ -9,9 +9,14 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     public int points = 0;
+
+    public GameObject shieldGameObject;
+
+    public bool playerHasSHield = false;
     void Start()
     {
-        
+        shieldGameObject.SetActive(false);
+        playerHasSHield = false;
     }
 
     void Update()

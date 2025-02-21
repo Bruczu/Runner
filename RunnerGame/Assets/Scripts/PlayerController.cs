@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            //transform.Translate(Vector3.up * Time.deltaTime);
             animator.Play("Jump");
 
             if (jumpAudioSource.isPlaying)

@@ -13,6 +13,16 @@ public class PlayerController : MonoBehaviour
     public GameObject shieldGameObject;
 
     public bool playerHasSHield = false;
+
+    public AudioClip jumpSound;
+    public AudioSource jumpAudioSource;
+
+    public AudioClip backgroundMusic;
+    public AudioSource soundTrackAudioSource;
+
+    public AudioClip shieldSound;
+    public AudioSource shieldAudioSource;
+
     void Start()
     {
         shieldGameObject.SetActive(false);
@@ -37,9 +47,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             animator.Play("Jump");
+
+            if (jumpAudioSource.isPlaying)
+            {
+
+            }
+            else
+            {
+                jumpAudioSource.PlayOneShot(jumpSound);
+            }
+            
         }
     }
 }

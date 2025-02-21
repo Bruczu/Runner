@@ -8,7 +8,7 @@ public class ObstacleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>(); //automatycznie przypisuje gracza
     }
 
     // Update is called once per frame

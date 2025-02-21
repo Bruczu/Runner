@@ -45,6 +45,7 @@ public class CollisionDetect : MonoBehaviour
             playerController.playerHasSHield = true;
             playerController.shieldGameObject.SetActive(true);
             uiManager.shieldIcon.enabled = true;
+            playerController.shieldAudioSource.PlayOneShot(playerController.shieldSound);
             Destroy(collision.gameObject);
         }
     }

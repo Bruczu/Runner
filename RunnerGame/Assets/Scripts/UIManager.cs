@@ -10,10 +10,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text playerPointsValue;
 
     public Image shieldIcon;
+    public Image background;
     // Start is called before the first frame update
     void Start()
     {
         shieldIcon.enabled = false;
+        background.enabled = false;
     }
 
     // Update is called once per frame

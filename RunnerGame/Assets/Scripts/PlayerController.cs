@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip shieldSound;
     public AudioSource shieldAudioSource;
 
+    //public bool isJumping = false;
+
     void Start()
     {
         shieldGameObject.SetActive(false);
@@ -47,9 +49,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Space))
         {
-            //transform.Translate(Vector3.up * Time.deltaTime);
             animator.Play("Jump");
 
             if (jumpAudioSource.isPlaying)

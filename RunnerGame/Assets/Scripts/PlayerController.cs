@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float PlayerSpeed = 2f;
+    public float PlayerSpeed;
 
     public Animator animator;
 
@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip shieldSound;
     public AudioSource shieldAudioSource;
 
+    public bool isJumping = false;
+    public int heightChange = 0;
+
     //public bool isJumping = false;
 
     void Start()
@@ -33,6 +36,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
             if (transform.position.x > -4f)
@@ -49,19 +57,56 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W))
         {
-            animator.Play("Jump");
-
-            if (jumpAudioSource.isPlaying)
+            //
+            if (isJumping == false)
             {
+                isJumping = true;
+                //
+                animator.Play("Jump");
 
+                if (jumpAudioSource.isPlaying)
+                {
+
+                }
+                else
+                {
+                    jumpAudioSource.PlayOneShot(jumpSound);
+                }
+                //
+                StartCoroutine(JumpSequence());
+                //
             }
-            else
-            {
-                jumpAudioSource.PlayOneShot(jumpSound);
-            }
-            
         }
+        //
+        if (isJumping == true)
+        {
+            if (heightChange == 0)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 3);
+            }
+            if (heightChange == 1)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 0);
+            }
+            if (heightChange == 2)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * -3);
+            }
+        }
+        //
     }
+    //
+    IEnumerator JumpSequence()
+    {
+        yield return new WaitForSeconds(0.45f);
+        heightChange = 1;
+        yield return new WaitForSeconds(0.6f);
+        heightChange = 2;
+        yield return new WaitForSeconds(0.45f);
+        isJumping = false;
+        heightChange = 0;
+    }
+    //
 }

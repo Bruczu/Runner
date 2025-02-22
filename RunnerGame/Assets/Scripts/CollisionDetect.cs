@@ -31,7 +31,7 @@ public class CollisionDetect : MonoBehaviour
             {
                 playerController.playerHasSHield = false;
                 playerController.shieldGameObject.SetActive(false);
-                uiManager.shieldIcon.enabled = false;
+                uiManager.shieldIcon.gameObject.SetActive(false);
             }
             else
             {
@@ -42,11 +42,20 @@ public class CollisionDetect : MonoBehaviour
         if (collision.gameObject.tag == "Shield")
         {
             //Debug.Log("zebrano tarczê");
-            playerController.playerHasSHield = true;
-            playerController.shieldGameObject.SetActive(true);
-            uiManager.shieldIcon.enabled = true;
-            playerController.shieldAudioSource.PlayOneShot(playerController.shieldSound);
-            Destroy(collision.gameObject);
+            if (playerController.playerHasSHield == false)
+            {
+                playerController.playerHasSHield = true;
+                playerController.shieldGameObject.SetActive(true);
+                uiManager.shieldIcon.enabled = true;
+                playerController.shieldAudioSource.PlayOneShot(playerController.shieldSound);
+                Destroy(collision.gameObject);
+            }
+            if (playerController.playerHasSHield == true)
+            {
+                playerController.shieldAudioSource.PlayOneShot(playerController.shieldSound);
+                playerController.points = playerController.points + 5;
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
